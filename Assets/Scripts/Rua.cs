@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rua : MonoBehaviour
 {
-    [SerializeField] private float velocidade = 6f;
+    [SerializeField] private float velocidade;
     private float larguraRua;
 
     // Start is called before the first frame update
@@ -22,7 +22,7 @@ public class Rua : MonoBehaviour
 
         if (posicaoXRua.x <= -larguraRua)
         {
-            posicaoXRua.x += larguraRua * 2f;
+            posicaoXRua.x += larguraRua * 1.98f;
             transform.position = posicaoXRua;
         }
     }
