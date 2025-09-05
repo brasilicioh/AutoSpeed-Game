@@ -17,12 +17,12 @@ public class Carro : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             rotacao = 35f;
             transform.Translate(Vector2.up * velocidade * Time.deltaTime, Space.World);
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             rotacao = -35f;
             transform.Translate(Vector2.down * velocidade * Time.deltaTime, Space.World);
@@ -47,10 +47,9 @@ public class Carro : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Colisor"))
+        if (other.gameObject.CompareTag("Colisor") || other.gameObject.CompareTag("Rua"))
         {
-            Debug.Log("Game Over");
-            Time.timeScale = 0f;
+            GameController.instance.setGameOver(true);
         }
     }
 }
