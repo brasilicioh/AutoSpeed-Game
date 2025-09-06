@@ -476,10 +476,10 @@ MonoBehaviour:
   intervaloMoeda: 2.5
   intervaloCollider: 3.5
   spritesColisores:
-  - {fileID: 21300000, guid: 4d6fc43903730014a820defee2eab250, type: 3}
+  - {fileID: 21300000, guid: 290e4aaa8237951448bc98e1c66ee625, type: 3}
   - {fileID: 21300000, guid: cc52c6c72f0b02a4b96c2cdc1f7ee8d9, type: 3}
   - {fileID: 21300000, guid: b2b05c8862748fb49a41d7b4f888a1de, type: 3}
-  - {fileID: 21300000, guid: 9b287d602c77d9544affd9a9bfbc6433, type: 3}
+  - {fileID: 21300000, guid: 2c22f6315f247ec4b987fa99857f463a, type: 3}
 --- !u!4 &1133508529
 Transform:
   m_ObjectHideFlags: 0
