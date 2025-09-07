@@ -17,6 +17,12 @@ public class Dinheiro : MonoBehaviour
         transform.position = new Vector2(transform.position.x - velocidade * Time.deltaTime, transform.position.y);
     }
 
+    void FixedUpdate()
+    {
+        GameController.instance.increaseVelocidade();
+        velocidade = GameController.instance.getVelocidade();
+    }
+
     void OnBecameInvisible()
     {
         Destroy(gameObject);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,5 +26,11 @@ public class Rua : MonoBehaviour
             posicaoXRua.x += larguraRua * 1.98f;
             transform.position = posicaoXRua;
         }
+    }
+
+    void FixedUpdate()
+    {
+        GameController.instance.increaseVelocidade();
+        velocidade = GameController.instance.getVelocidade();
     }
 }

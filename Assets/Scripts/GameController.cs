@@ -9,11 +9,11 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject carro, rua, menu, moeda, colisor, spawner, gameOver;
     [SerializeField] private float intervaloMoeda, intervaloCollider;
     [SerializeField] private Sprite[] spritesColisores;
-    [SerializeField] private RuntimeAnimatorController AnimatorController;
-    private int money = 0;
+    [SerializeField] private RuntimeAnimatorController Gato, Ciclista;
+    private int money = 0, lastIncrease = 0;
+    private float velocidadeGlobal = 8f;
     private BoxCollider2D boxColisor;
     private Animator colisorAnimator;
-    
     private bool started, over;
 
     // Start is called before the first frame update
@@ -23,8 +23,8 @@ public class GameController : MonoBehaviour
         over = false;
         boxColisor = colisor.GetComponent<BoxCollider2D>();
         colisorAnimator = colisor.GetComponent<Animator>();
-        InvokeRepeating("SpawnMoeda", 0f, intervaloMoeda);
-        InvokeRepeating("SpawnColisor", 2f, intervaloCollider);
+        InvokeRepeating("SpawnMoeda", 2f, intervaloMoeda);
+        InvokeRepeating("SpawnColisor", 3f, intervaloCollider);
     }
 
     // Update is called once per frame
@@ -79,26 +79,22 @@ public class GameController : MonoBehaviour
             switch (randomIndex)
             {
                 case 0:
-                    float scalex = Random.Range(0.58f, 0.9f);
-                    float scaley = Random.Range(0.58f, 0.9f);
+                    float scalex = Random.Range(0.23f, 0.47f);
+                    float scaley = Random.Range(0.23f, 0.35f);
                     colisor.transform.localScale = new Vector3(scalex, scaley, 0f);
-                    boxColisor.size = new Vector2(3.74f, 3.43f);
                     colisorAnimator.runtimeAnimatorController = null;
                     break;
                 case 1:
                     colisor.transform.localScale = new Vector3(-0.68f, 0.68f, 0f);
-                    boxColisor.size = new Vector2(2.5f, 1.24f);
                     colisorAnimator.runtimeAnimatorController = null;
                     break;
                 case 2:
-                    colisor.transform.localScale = new Vector3(0.095f, 0.095f, 0f);
-                    boxColisor.size = new Vector2(19.01f, 19.2f);
-                    colisorAnimator.runtimeAnimatorController = null;
+                    colisor.transform.localScale = new Vector3(1, 1, 0f);
+                    colisorAnimator.runtimeAnimatorController = Ciclista;
                     break;
                 case 3:
                     colisor.transform.localScale = new Vector3(-1.7f, 1.7f, 0f);
-                    boxColisor.size = new Vector2(1.56f, 0.62f);
-                    colisorAnimator.runtimeAnimatorController = AnimatorController;
+                    colisorAnimator.runtimeAnimatorController = Gato;
                     break;
             }
             colisor.GetComponent<SpriteRenderer>().sprite = spritesColisores[randomIndex];
@@ -126,6 +122,7 @@ public class GameController : MonoBehaviour
     {
         money = num;
     }
+
     public int getMoney()
     {
         return money;
@@ -144,6 +141,8 @@ public class GameController : MonoBehaviour
             carro.transform.position = new Vector2(-6f, 0f);
             carro.transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, 0f), 0);
             setMoney(0);
+            velocidadeGlobal = 8f;
+            intervaloCollider = 3.5f;
             started = false;
             over = false;
             gameOver.SetActive(false);
@@ -151,6 +150,51 @@ public class GameController : MonoBehaviour
             carro.SetActive(false);
             rua.SetActive(false);
             Time.timeScale = 1f;
+        }
+    }
+
+    public float getVelocidade()
+    {
+        return velocidadeGlobal;
+    }
+
+    public void increaseVelocidade()
+    {
+        if (getMoney() % 5 == 0 && getMoney() != lastIncrease)
+        {
+            if (velocidadeGlobal < 15)
+            {
+                velocidadeGlobal += 0.5f;
+                lastIncrease = getMoney();
+            }
+            else if (velocidadeGlobal < 17)
+            {
+                velocidadeGlobal += 0.1f;
+                lastIncrease = getMoney();
+            }
+            else
+            {
+                velocidadeGlobal += 0.02f;
+                lastIncrease = getMoney();
+            }
+
+            if (getMoney() % 10 == 0 && intervaloCollider > 0.5f)
+            {
+                CancelInvoke("SpawnColisor");
+                if (intervaloCollider > 1.5f)
+                {
+                    intervaloCollider -= 0.5f;
+                }
+                else if (intervaloCollider > 0.75f)
+                {
+                    intervaloCollider -= 0.25f;
+                }
+                else if (intervaloCollider > 0.5f)
+                {
+                    intervaloCollider -= 0.05f;
+                }
+                InvokeRepeating("SpawnColisor", 1f, intervaloCollider);
+            }
         }
     }
 }
