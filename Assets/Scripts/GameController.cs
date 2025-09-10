@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
             {
                 started = true;
                 over = false;
+                AudioController.instance.TocarMusicaFundo();
             }
         }
         else
@@ -135,6 +136,7 @@ public class GameController : MonoBehaviour
             Time.timeScale = 0f;
             gameOver.SetActive(true);
             over = true;
+            AudioController.instance.PararMusicaFundo();
         }
         else
         {
