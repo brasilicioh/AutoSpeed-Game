@@ -42,8 +42,8 @@ public class Colisor : MonoBehaviour
 
     void FixedUpdate()
     {
-        GameController.instance.increaseVelocidade();
-        velocidade = GameController.instance.getVelocidade();
+        GameController.instance.IncreaseVelocidade();
+        velocidade = GameController.instance.GetVelocidade();
     }
 
     void OnBecameInvisible()

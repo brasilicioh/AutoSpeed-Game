@@ -12,7 +12,6 @@ public class GameController : MonoBehaviour
     [SerializeField] private RuntimeAnimatorController Gato, Ciclista;
     private int money = 0, lastIncrease = 0;
     private float velocidadeGlobal = 8f;
-    private BoxCollider2D boxColisor;
     private Animator colisorAnimator;
     private bool started, over;
 
@@ -21,7 +20,6 @@ public class GameController : MonoBehaviour
     {
         started = false;
         over = false;
-        boxColisor = colisor.GetComponent<BoxCollider2D>();
         colisorAnimator = colisor.GetComponent<Animator>();
         InvokeRepeating("SpawnMoeda", 2f, intervaloMoeda);
         InvokeRepeating("SpawnColisor", 3f, intervaloCollider);
@@ -57,7 +55,7 @@ public class GameController : MonoBehaviour
                     Destroy(obj);
                 }
             }
-            setGameOver(false);
+            SetGameOver(false);
         }
     }
 
@@ -119,17 +117,17 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void setMoney(int num)
+    public void SetMoney(int num)
     {
         money = num;
     }
 
-    public int getMoney()
+    public int GetMoney()
     {
         return money;
     }
 
-    public void setGameOver(bool itsOver)
+    public void SetGameOver(bool itsOver)
     {
         if (itsOver)
         {
@@ -142,7 +140,7 @@ public class GameController : MonoBehaviour
         {
             carro.transform.position = new Vector2(-6f, 0f);
             carro.transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, 0f), 0);
-            setMoney(0);
+            SetMoney(0);
             velocidadeGlobal = 8f;
             intervaloCollider = 3.5f;
             started = false;
@@ -155,32 +153,32 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public float getVelocidade()
+    public float GetVelocidade()
     {
         return velocidadeGlobal;
     }
 
-    public void increaseVelocidade()
+    public void IncreaseVelocidade()
     {
-        if (getMoney() % 5 == 0 && getMoney() != lastIncrease)
+        if (GetMoney() % 5 == 0 && GetMoney() != lastIncrease)
         {
             if (velocidadeGlobal < 15)
             {
                 velocidadeGlobal += 0.5f;
-                lastIncrease = getMoney();
+                lastIncrease = GetMoney();
             }
             else if (velocidadeGlobal < 17)
             {
                 velocidadeGlobal += 0.1f;
-                lastIncrease = getMoney();
+                lastIncrease = GetMoney();
             }
             else
             {
                 velocidadeGlobal += 0.02f;
-                lastIncrease = getMoney();
+                lastIncrease = GetMoney();
             }
 
-            if (getMoney() % 10 == 0 && intervaloCollider > 0.5f)
+            if (GetMoney() % 10 == 0 && intervaloCollider > 0.5f)
             {
                 CancelInvoke("SpawnColisor");
                 if (intervaloCollider > 1.5f)

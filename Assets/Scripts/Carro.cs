@@ -39,17 +39,17 @@ public class Carro : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Moeda"))
         {
-            GameController.instance.setMoney(GameController.instance.getMoney() + 1);
+            GameController.instance.SetMoney(GameController.instance.GetMoney() + 1);
             Destroy(other.gameObject);
         }
-        Debug.Log(GameController.instance.getMoney());
+        Debug.Log(GameController.instance.GetMoney());
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Colisor") || other.gameObject.CompareTag("Rua"))
         {
-            GameController.instance.setGameOver(true);
+            GameController.instance.SetGameOver(true);
         }
     }
 }
