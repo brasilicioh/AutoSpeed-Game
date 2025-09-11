@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private float intervaloMoeda, intervaloCollider;
     [SerializeField] private Sprite[] spritesColisores;
     [SerializeField] private RuntimeAnimatorController Gato, Ciclista;
+    [SerializeField] private TMP_Text scoreText;
     private int money = 0, lastIncrease = 0;
     private float velocidadeGlobal = 8f;
     private Animator colisorAnimator;
@@ -18,6 +20,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        menu.SetActive(true);
         started = false;
         over = false;
         colisorAnimator = colisor.GetComponent<Animator>();
@@ -42,6 +45,7 @@ public class GameController : MonoBehaviour
             menu.SetActive(false);
             carro.SetActive(true);
             rua.SetActive(true);
+            SetScore();
         }
         if (over && Input.GetKey(KeyCode.Return))
         {
@@ -117,9 +121,15 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void SetScore()
+    {
+        scoreText.text = money.ToString();
+    }
+
     public void SetMoney(int num)
     {
         money = num;
+        SetScore();
     }
 
     public int GetMoney()
@@ -149,6 +159,7 @@ public class GameController : MonoBehaviour
             menu.SetActive(true);
             carro.SetActive(false);
             rua.SetActive(false);
+            scoreText.text = "";
             Time.timeScale = 1f;
         }
     }
