@@ -5,8 +5,8 @@ using UnityEngine;
 public class AudioController : MonoBehaviour
 {
     public static AudioController instance;
+    [SerializeField] private AudioClip backgroundMusic;
     private AudioSource audioSource, audioSourceMusic;
-    [SerializeField] AudioClip backgroundMusic;
 
     // Start is called before the first frame update
     void Start()

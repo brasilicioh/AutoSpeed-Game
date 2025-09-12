@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class Carro : MonoBehaviour
 {
     [SerializeField] private float velocidade;
+    [SerializeField] private AudioClip colisionSound, colectedMoney;
     private float rotacao = 0f;
 
     // Start is called before the first frame update
@@ -39,16 +40,17 @@ public class Carro : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Moeda"))
         {
+            AudioController.instance.TocarAudio(colectedMoney);
             GameController.instance.SetMoney(GameController.instance.GetMoney() + 1);
             Destroy(other.gameObject);
         }
-        Debug.Log(GameController.instance.GetMoney());
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Colisor") || other.gameObject.CompareTag("Rua"))
         {
+            AudioController.instance.TocarAudio(colisionSound);
             GameController.instance.SetGameOver(true);
         }
     }

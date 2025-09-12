@@ -6,6 +6,7 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
+    [SerializeField] private GameObject mainCamera;
 
     [SerializeField] private GameObject carro, rua, menu, moeda, colisor, spawner, gameOver;
     [SerializeField] private float intervaloMoeda, intervaloCollider;
@@ -16,10 +17,13 @@ public class GameController : MonoBehaviour
     private float velocidadeGlobal = 8f;
     private Animator colisorAnimator;
     private bool started, over;
+    private Camera cameraMain;
 
     // Start is called before the first frame update
     void Start()
     {
+        cameraMain = mainCamera.GetComponent<Camera>();
+        cameraMain.backgroundColor = new Color32(0, 0, 0, 1);
         menu.SetActive(true);
         started = false;
         over = false;
@@ -42,6 +46,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
+            cameraMain.backgroundColor = new Color32(126, 109, 97, 255);
             menu.SetActive(false);
             carro.SetActive(true);
             rua.SetActive(true);
@@ -59,6 +64,7 @@ public class GameController : MonoBehaviour
                     Destroy(obj);
                 }
             }
+            cameraMain.backgroundColor = new Color32(0, 0, 0, 1);
             SetGameOver(false);
         }
     }
@@ -68,7 +74,7 @@ public class GameController : MonoBehaviour
         if (started)
         {
             Vector2 positionSpawn = spawner.transform.position;
-            positionSpawn.y = Random.Range(-3.25f, 3.25f);
+            positionSpawn.y = Random.Range(-3.5f, 2.9f);
             // metodo que instancia o prefab; o objeto, a posicao, a rotacao padrao do negocio
             Instantiate(moeda, positionSpawn, Quaternion.identity);
         }
@@ -79,30 +85,33 @@ public class GameController : MonoBehaviour
         if (started)
         {
             int randomIndex = Random.Range(0, 4);
+            Vector2 positionSpawn = spawner.transform.position;
             switch (randomIndex)
             {
                 case 0:
+                    positionSpawn.y = Random.Range(-3.2f, 2.55f);
                     float scalex = Random.Range(0.23f, 0.47f);
                     float scaley = Random.Range(0.23f, 0.35f);
                     colisor.transform.localScale = new Vector3(scalex, scaley, 0f);
                     colisorAnimator.runtimeAnimatorController = null;
                     break;
                 case 1:
+                    positionSpawn.y = Random.Range(-3.7f, 3.1f);
                     colisor.transform.localScale = new Vector3(-0.68f, 0.68f, 0f);
                     colisorAnimator.runtimeAnimatorController = null;
                     break;
                 case 2:
+                    positionSpawn.y = Random.Range(-3f, 2.9f);
                     colisor.transform.localScale = new Vector3(1, 1, 0f);
                     colisorAnimator.runtimeAnimatorController = Ciclista;
                     break;
                 case 3:
+                    positionSpawn.y = Random.Range(-3.6f, 3.1f);
                     colisor.transform.localScale = new Vector3(-1.7f, 1.7f, 0f);
                     colisorAnimator.runtimeAnimatorController = Gato;
                     break;
             }
             colisor.GetComponent<SpriteRenderer>().sprite = spritesColisores[randomIndex];
-            Vector2 positionSpawn = spawner.transform.position;
-            positionSpawn.y = Random.Range(-3.25f, 3.25f);
             // metodo que instancia o prefab; o objeto, a posicao, a rotacao padrao do negocio
             Instantiate(colisor, positionSpawn, Quaternion.identity);
         }
