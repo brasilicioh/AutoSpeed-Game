@@ -10,21 +10,14 @@ public class Colisor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameObject.AddComponent<PolygonCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GetComponent<PolygonCollider2D>() == null)
-        {
-            gameObject.AddComponent<PolygonCollider2D>();
-        }
-        else
-        {
-            Destroy(GetComponent<PolygonCollider2D>());
-            gameObject.AddComponent<PolygonCollider2D>();
-        }
+        Destroy(GetComponent<PolygonCollider2D>());
+        gameObject.AddComponent<PolygonCollider2D>();
 
         transform.position = new Vector2(transform.position.x - velocidade * Time.deltaTime, transform.position.y);
 

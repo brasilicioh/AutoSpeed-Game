@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour
         if (started)
         {
             Vector2 positionSpawn = spawner.transform.position;
-            positionSpawn.y = Random.Range(-3.5f, 2.9f);
+            positionSpawn.y = Random.Range(-3.6f, 3.1f);
             // metodo que instancia o prefab; o objeto, a posicao, a rotacao padrao do negocio
             Instantiate(moeda, positionSpawn, Quaternion.identity);
         }

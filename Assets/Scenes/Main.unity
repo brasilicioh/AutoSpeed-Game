@@ -158,7 +158,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.2784314, g: 0.2784314, b: 0.2784314, a: 1}
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 598505463}
   - component: {fileID: 598505465}
   - component: {fileID: 598505464}
+  - component: {fileID: 598505466}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -298,12 +299,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 34
+  m_fontSizeBase: 34
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 20
-  m_fontSizeMax: 30
+  m_fontSizeMin: 18
+  m_fontSizeMax: 34
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -348,6 +349,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598505462}
   m_CullTransparentMesh: 1
+--- !u!95 &598505466
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598505462}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f69583803f31215419fbbb7dd06cf0ef, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &741763492
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1121545179
 Transform:
   m_ObjectHideFlags: 0
@@ -845,7 +867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b03c63b222c2542aba7b0c8119fb95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundMusic: {fileID: 8300000, guid: 3c420e5a85144a542987f4d59b1d0c58, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: d3e01e8db73b22d43935d33101dde55a, type: 3}
 --- !u!4 &1307322158
 Transform:
   m_ObjectHideFlags: 0
@@ -1037,7 +1059,7 @@ Transform:
   m_GameObject: {fileID: 1822957826}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.09, y: 2.55, z: 0}
+  m_LocalPosition: {x: 0, y: 1.3, z: 0}
   m_LocalScale: {x: 0.8, y: 0.55, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1076,8 +1098,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidade: 8
-  colisionSound: {fileID: 8300000, guid: a7fe1a8f4a5a68c498004f0fb526ca74, type: 3}
-  colectedMoney: {fileID: 8300000, guid: b40131af7b8099a4fbbc45f53b187844, type: 3}
+  colisionSound: {fileID: 8300000, guid: dbc50718d802aa542a52fd2df267fa9a, type: 3}
+  colectedMoney: {fileID: 8300000, guid: ab38e139ad6247a48a4fec85155845cc, type: 3}
 --- !u!212 &2030922424
 SpriteRenderer:
   m_ObjectHideFlags: 0
