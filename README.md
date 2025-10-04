@@ -39,7 +39,7 @@ Este projeto foi desenvolvido como parte do **Curso FIC - Programação de Jogos
 ## 📦 Como Executar
 
 1. Clone o repositório:
-   `git clone https://github.com/seu-usuario/AutoSpeed-Game.git`
+   `git clone https://github.com/brasilicioh/AutoSpeed-Game.git`
 2. Abra o projeto no Unity Hub
 3. Compile e rode o jogo dentro do editor
 
